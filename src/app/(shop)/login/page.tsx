@@ -80,10 +80,6 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="mt-4 text-center text-sm text-gray-500">
-          <p>테스트 계정: test@test.com / 1234</p>
-        </div>
-
         <div className="mt-5 pt-4 border-t border-gray-100 text-center text-sm text-gray-500">
           아직 회원이 아니신가요?{" "}
           <Link href="/register" className="text-blue-700 font-semibold hover:underline">

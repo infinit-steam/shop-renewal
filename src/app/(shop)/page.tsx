@@ -32,7 +32,7 @@ export default async function Home() {
     <div className="space-y-5">
       {/* Banner */}
       <div className="bg-gradient-to-r from-blue-700 to-blue-500 rounded-lg p-6 text-white">
-        <p className="text-sm opacity-80 mb-1">선진P&C 도매 쇼핑몰</p>
+        <p className="text-sm opacity-80 mb-1">유니버스 핸드폰케이스 도매 쇼핑몰</p>
         <h1 className="text-2xl font-bold mb-2">보호필름 · 케이스 · 충전기</h1>
         <p className="text-sm opacity-80">B2B 전용 도매가로 제공합니다.</p>
         <Link

@@ -2,12 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
 
 export default function RegisterPage() {
-  const router = useRouter();
-  const { refresh: refreshAuth } = useAuth();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -19,6 +15,7 @@ export default function RegisterPage() {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,8 +40,7 @@ export default function RegisterPage() {
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error); return; }
-      await refreshAuth();
-      router.push("/");
+      setDone(true);
     } catch {
       setError("서버 오류가 발생했습니다.");
     } finally {
@@ -65,6 +61,24 @@ export default function RegisterPage() {
       />
     </div>
   );
+
+  if (done) {
+    return (
+      <div className="max-w-lg mx-auto mt-8">
+        <div className="bg-white border border-gray-200 rounded-lg p-10 text-center">
+          <div className="text-4xl mb-4">✅</div>
+          <h2 className="text-lg font-bold text-gray-900 mb-2">가입 신청이 완료되었습니다!</h2>
+          <p className="text-sm text-gray-600 mb-4">
+            관리자 승인 후 회원가 열람 및 주문이 가능합니다.<br />
+            승인 완료 시 가입하신 이메일로 연락드리겠습니다.
+          </p>
+          <Link href="/login" className="inline-block bg-blue-700 text-white px-6 py-2.5 rounded text-sm font-semibold hover:bg-blue-800">
+            로그인 페이지로
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-lg mx-auto mt-8">

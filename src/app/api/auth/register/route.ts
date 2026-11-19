@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/db";
-import { signToken, COOKIE_NAME } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,27 +17,12 @@ export async function POST(req: NextRequest) {
     }
 
     const hash = await bcrypt.hash(password, 10);
-    const user = await prisma.user.create({
-      data: { email, password: hash, companyName, bizRegNo, contactName, phone },
+    await prisma.user.create({
+      data: { email, password: hash, companyName, bizRegNo, contactName, phone, isApproved: false },
     });
 
-    const token = await signToken({
-      sub: user.id,
-      email: user.email,
-      companyName: user.companyName,
-      isApproved: user.isApproved,
-      role: user.role,
-    });
-
-    const res = NextResponse.json({ ok: true });
-    res.cookies.set(COOKIE_NAME, token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7,
-      path: "/",
-    });
-    return res;
+    // 관리자 승인 후 로그인 가능 — 가입 시 자동 로그인 없음
+    return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: "서버 오류가 발생했습니다." }, { status: 500 });
   }

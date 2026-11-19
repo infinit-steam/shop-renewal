@@ -29,7 +29,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-56 flex-shrink-0 bg-gray-900 text-white flex flex-col min-h-screen">
         <div className="px-5 py-4 border-b border-gray-700">
           <p className="text-xs text-gray-400 mb-0.5">관리자 콘솔</p>
-          <p className="font-bold text-white text-sm">선진P&C Admin</p>
+          <p className="font-bold text-white text-sm">유니버스 Admin</p>
         </div>
         <nav className="flex-1 py-3">
           {NAV.map(({ href, label, icon }) => {

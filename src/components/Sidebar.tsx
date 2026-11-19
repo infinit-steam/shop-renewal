@@ -69,18 +69,14 @@ export default function Sidebar() {
       {/* Account & CS Info */}
       <div className="border border-gray-200 rounded bg-gray-50 text-xs">
         <div className="bg-blue-700 text-white text-center py-1.5 font-semibold text-sm rounded-t">
-          계좌 &amp; 고객센터
+          고객센터
         </div>
         <div className="p-3 space-y-1.5 text-gray-700 leading-relaxed">
-          <p className="font-semibold text-gray-900">농협은행</p>
-          <p>355-0097-7736-23</p>
-          <p className="text-gray-500">주식회사 선진피앤씨</p>
+          <p className="font-semibold text-gray-900">와이티앤</p>
+          <p className="text-gray-500">대표 신지원</p>
           <hr className="border-gray-200 my-1" />
           <p>
-            <span className="font-semibold">Tel.</span> 1544-5819
-          </p>
-          <p>
-            <span className="font-semibold">Fax.</span> 042-634-7827
+            <span className="font-semibold">Tel.</span> 010-7607-1467
           </p>
         </div>
       </div>

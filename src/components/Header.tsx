@@ -33,7 +33,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <div className="bg-blue-700 text-white font-bold text-xl px-4 py-2 rounded select-none">
-            선진P&C
+            유니버스
           </div>
         </Link>
 
