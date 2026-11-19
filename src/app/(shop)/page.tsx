@@ -1,16 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
-import { categories } from "@/data/mockData";
+import { categories, flatCategories } from "@/data/mockData";
 import { prisma } from "@/lib/db";
 
 export const instant = false;
 
-async function getFeaturedProducts() {
+const QUICK_TAGS = [
+  { label: "#아이폰16", q: "아이폰16" },
+  { label: "#갤럭시S25", q: "갤럭시S25" },
+  { label: "#Z플립7", q: "Z플립7" },
+  { label: "#맥세이프", q: "맥세이프" },
+  { label: "#강화유리", q: "강화유리" },
+];
+
+async function getNewArrivals() {
   try {
     return await prisma.product.findMany({
-      where: { visible: true, outOfStock: false },
-      orderBy: { soldCount: "desc" },
-      take: 6,
+      where: { visible: true },
+      orderBy: { id: "desc" },
+      take: 12,
       select: {
         id: true,
         categorySlug: true,
@@ -25,70 +33,218 @@ async function getFeaturedProducts() {
   }
 }
 
+async function getCategoryThumbnails(): Promise<Record<string, string[]>> {
+  try {
+    const slugToDepth1: Record<string, string> = {};
+    for (const fc of flatCategories) {
+      slugToDepth1[fc.slug] = fc.depth1Slug;
+    }
+
+    const products = await prisma.product.findMany({
+      where: { visible: true, thumbnail: { not: "" } },
+      select: { categorySlug: true, thumbnail: true },
+      orderBy: { soldCount: "desc" },
+      take: 300,
+    });
+
+    const result: Record<string, string[]> = {};
+    for (const p of products) {
+      if (!p.thumbnail) continue;
+      const depth1 = slugToDepth1[p.categorySlug];
+      if (!depth1) continue;
+      if (!result[depth1]) result[depth1] = [];
+      if (result[depth1].length < 2) result[depth1].push(p.thumbnail);
+    }
+    return result;
+  } catch {
+    return {};
+  }
+}
+
 export default async function Home() {
-  const featured = await getFeaturedProducts();
+  const [newArrivals, categoryThumbs] = await Promise.all([
+    getNewArrivals(),
+    getCategoryThumbnails(),
+  ]);
 
   return (
-    <div className="space-y-5">
-      {/* Banner */}
-      <div className="bg-gradient-to-r from-blue-700 to-blue-500 rounded-lg p-6 text-white">
-        <p className="text-sm opacity-80 mb-1">유니버스 핸드폰케이스 도매 쇼핑몰</p>
-        <h1 className="text-2xl font-bold mb-2">보호필름 · 케이스 · 충전기</h1>
-        <p className="text-sm opacity-80">B2B 전용 도매가로 제공합니다.</p>
-        <Link
-          href={`/category/${categories[0]?.slug ?? ""}`}
-          className="mt-4 inline-block bg-white text-blue-700 text-sm font-semibold px-4 py-2 rounded hover:bg-blue-50 transition-colors"
-        >
-          상품 보기 →
-        </Link>
+    <div className="space-y-7">
+      {/* ── Hero Banner ─────────────────────────────────────────── */}
+      <div className="relative bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#1e3a8a] rounded-2xl overflow-hidden">
+        <div className="flex items-center min-h-[220px]">
+          {/* Left: copy */}
+          <div className="flex-1 p-7 z-10">
+            <span className="inline-block text-[11px] font-bold text-indigo-400 tracking-widest uppercase mb-3 border border-indigo-500/40 rounded-full px-3 py-0.5">
+              B2B 도매 전문몰
+            </span>
+            <h1 className="text-[22px] font-extrabold text-white leading-tight mb-2">
+              핸드폰 케이스 · 보호필름<br />
+              <span className="text-indigo-300">충전기 · 액세서리</span>
+            </h1>
+            <p className="text-sm text-slate-400 mb-5">도매 회원 전용가 · 소량 주문 가능 · 빠른 배송</p>
+            <Link
+              href={`/category/${categories[0]?.slug ?? ""}`}
+              className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-lg shadow-indigo-900/40"
+            >
+              전체 상품 보기 →
+            </Link>
+            {/* Quick tags */}
+            <div className="flex flex-wrap gap-2 mt-5">
+              {QUICK_TAGS.map((tag) => (
+                <Link
+                  key={tag.q}
+                  href={`/search?q=${encodeURIComponent(tag.q)}`}
+                  className="text-xs text-slate-300 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-indigo-400 rounded-full px-3 py-1 transition-colors"
+                >
+                  {tag.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: phone SVG illustration */}
+          <div className="hidden md:flex items-center justify-center pr-8 opacity-90">
+            <svg width="150" height="300" viewBox="0 0 150 300" aria-hidden="true">
+              <defs>
+                <linearGradient id="phoneBody" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#334155" />
+                  <stop offset="100%" stopColor="#1E293B" />
+                </linearGradient>
+                <linearGradient id="screen" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#0F172A" />
+                  <stop offset="100%" stopColor="#1e1b4b" />
+                </linearGradient>
+                <linearGradient id="caseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                </linearGradient>
+              </defs>
+              {/* Phone case (outer) */}
+              <rect x="4" y="4" width="142" height="292" rx="26" fill="url(#caseGrad)" />
+              {/* Phone body */}
+              <rect x="10" y="10" width="130" height="280" rx="22" fill="url(#phoneBody)" />
+              {/* Screen */}
+              <rect x="17" y="24" width="116" height="242" rx="14" fill="url(#screen)" />
+              {/* Dynamic island */}
+              <rect x="52" y="30" width="46" height="12" rx="6" fill="#0F172A" />
+              {/* Product grid on screen */}
+              <rect x="23" y="52" width="48" height="48" rx="7" fill="#312E81" opacity="0.9"/>
+              <rect x="79" y="52" width="48" height="48" rx="7" fill="#1e3a8a" opacity="0.9"/>
+              <rect x="23" y="108" width="48" height="48" rx="7" fill="#1e3a8a" opacity="0.9"/>
+              <rect x="79" y="108" width="48" height="48" rx="7" fill="#312E81" opacity="0.9"/>
+              {/* Product label bars */}
+              <rect x="23" y="164" width="104" height="8" rx="4" fill="#6366f1" opacity="0.5"/>
+              <rect x="23" y="178" width="76" height="6" rx="3" fill="#94a3b8" opacity="0.35"/>
+              <rect x="23" y="190" width="52" height="6" rx="3" fill="#94a3b8" opacity="0.25"/>
+              {/* Price badge */}
+              <rect x="23" y="204" width="44" height="14" rx="7" fill="#6366f1" opacity="0.6"/>
+              <rect x="27" y="207" width="36" height="8" rx="4" fill="#c7d2fe" opacity="0.9"/>
+              {/* Home indicator */}
+              <rect x="57" y="263" width="36" height="4" rx="2" fill="#475569" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Background glow */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
       </div>
 
-      {/* Category quick links */}
-      <div className="grid grid-cols-3 gap-3">
-        {categories.map((cat) => (
-          <Link
-            key={cat.id}
-            href={`/category/${cat.slug}`}
-            className="bg-white border border-gray-200 rounded-lg p-4 text-center hover:border-blue-400 hover:shadow-sm transition-all"
-          >
-            <p className="font-semibold text-gray-800">{cat.name}</p>
-            <p className="text-xs text-gray-400 mt-1">
-              {cat.children?.map((c) => c.name).join(" · ")}
-            </p>
-          </Link>
-        ))}
+      {/* ── Category Showcase ────────────────────────────────────── */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-1 h-5 bg-indigo-600 rounded-full inline-block" />
+          <h2 className="text-sm font-bold text-slate-800">카테고리</h2>
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          {categories.map((cat) => {
+            const thumbs = categoryThumbs[cat.slug] ?? [];
+            return (
+              <Link
+                key={cat.id}
+                href={`/category/${cat.slug}`}
+                className="group bg-white border border-slate-200 rounded-xl overflow-hidden hover:-translate-y-1 hover:shadow-lg hover:border-indigo-400 transition-all duration-200"
+              >
+                {/* Thumbnail area */}
+                <div className="flex h-20 bg-slate-50">
+                  {thumbs.length > 0 ? (
+                    thumbs.map((src, i) => (
+                      <div key={i} className="flex-1 relative border-r border-slate-100 last:border-r-0">
+                        <Image
+                          src={src}
+                          alt=""
+                          fill
+                          className="object-contain p-1.5"
+                          sizes="100px"
+                          unoptimized
+                        />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="flex-1 flex items-center justify-center">
+                      <svg className="w-9 h-9 text-slate-300" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2zm-5 18a1 1 0 110-2 1 1 0 010 2zm5-4H7V5h10v11z"/>
+                      </svg>
+                    </div>
+                  )}
+                </div>
+                {/* Text area */}
+                <div className="px-3 py-2.5">
+                  <p className="font-semibold text-sm text-slate-800 group-hover:text-indigo-700 transition-colors truncate">
+                    {cat.name}
+                  </p>
+                  <p className="text-xs text-slate-400 mt-0.5 truncate">
+                    {cat.children?.slice(0, 3).map((c) => c.name).join(" · ")}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Featured products */}
-      {featured.length > 0 && (
+      {/* ── New Arrivals Grid ────────────────────────────────────── */}
+      {newArrivals.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base font-bold text-gray-800">추천 상품</h2>
-            <Link href={`/category/${categories[0]?.slug ?? ""}`} className="text-xs text-blue-600 hover:underline">
+            <div className="flex items-center gap-2">
+              <span className="w-1 h-5 bg-indigo-600 rounded-full inline-block" />
+              <h2 className="text-sm font-bold text-slate-800">신규 입고 상품</h2>
+            </div>
+            <Link
+              href={`/category/${categories[0]?.slug ?? ""}`}
+              className="text-xs text-indigo-600 hover:underline"
+            >
               전체보기 →
             </Link>
           </div>
-          <div className="grid grid-cols-3 gap-3">
-            {featured.map((p) => (
+          <div className="grid grid-cols-4 gap-3">
+            {newArrivals.map((p) => (
               <Link
                 key={p.id}
                 href={`/category/${p.categorySlug}`}
-                className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
+                className="group bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md hover:border-indigo-300 transition-all duration-200"
               >
-                <div className="relative aspect-square bg-gray-100">
+                <div className="relative aspect-square bg-slate-50">
                   <Image
                     src={p.thumbnail || "/images/products/img_0001.jpg"}
                     alt={p.productName}
                     fill
                     className="object-contain p-2"
-                    sizes="200px"
+                    sizes="150px"
                     unoptimized
                   />
                 </div>
                 <div className="p-2.5">
-                  <p className="text-xs text-gray-500 truncate">{p.modelName}</p>
-                  <p className="text-sm font-semibold text-gray-900 truncate mt-0.5">{p.productName}</p>
-                  <p className="text-sm font-bold text-blue-700 mt-1">{p.priceMember.toLocaleString()}원</p>
+                  <span className="inline-block text-[10px] text-indigo-600 bg-indigo-50 rounded px-1.5 py-0.5 font-semibold mb-1 max-w-full truncate">
+                    {p.modelName}
+                  </span>
+                  <p className="text-xs font-medium text-slate-800 truncate leading-tight">
+                    {p.productName}
+                  </p>
+                  <p className="text-sm font-bold text-indigo-700 mt-1">
+                    {p.priceMember.toLocaleString()}원
+                  </p>
                 </div>
               </Link>
             ))}
