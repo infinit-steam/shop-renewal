@@ -68,7 +68,7 @@ export default async function SearchPage({ searchParams }: Props) {
           <p className="text-sm text-slate-400 mt-1">다른 키워드로 검색해 보세요.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {products.map((p) => (
             <Link
               key={p.id}

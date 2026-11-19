@@ -89,17 +89,17 @@ export default async function Home() {
     <div className="space-y-7">
       {/* ── Hero Banner ─────────────────────────────────────────── */}
       <div className="relative bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#1e3a8a] rounded-2xl overflow-hidden">
-        <div className="flex items-center min-h-[220px]">
+        <div className="flex items-center min-h-[200px] md:min-h-[220px]">
           {/* Left: copy */}
-          <div className="flex-1 p-7 z-10">
-            <span className="inline-block text-[11px] font-bold text-indigo-400 tracking-widest uppercase mb-3 border border-indigo-500/40 rounded-full px-3 py-0.5">
+          <div className="flex-1 p-4 md:p-7 z-10">
+            <span className="inline-block text-[10px] md:text-[11px] font-bold text-indigo-400 tracking-widest uppercase mb-2 md:mb-3 border border-indigo-500/40 rounded-full px-3 py-0.5">
               B2B 도매 전문몰
             </span>
-            <h1 className="text-[22px] font-extrabold text-white leading-tight mb-2">
+            <h1 className="text-lg md:text-[22px] font-extrabold text-white leading-tight mb-2">
               핸드폰 케이스 · 보호필름<br />
               <span className="text-indigo-300">충전기 · 액세서리</span>
             </h1>
-            <p className="text-sm text-slate-400 mb-5">도매 회원 전용가 · 소량 주문 가능 · 빠른 배송</p>
+            <p className="text-xs md:text-sm text-slate-400 mb-3 md:mb-5">도매 회원 전용가 · 소량 주문 가능 · 빠른 배송</p>
             <Link
               href={`/category/${categories[0]?.slug ?? ""}`}
               className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-lg shadow-indigo-900/40"
@@ -154,7 +154,7 @@ export default async function Home() {
           <span className="w-1 h-5 bg-indigo-600 rounded-full inline-block" />
           <h2 className="text-sm font-bold text-slate-800">카테고리</h2>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {categories.map((cat) => {
             const thumbs = categoryThumbs[cat.slug] ?? [];
             return (
@@ -215,7 +215,7 @@ export default async function Home() {
               전체보기 →
             </Link>
           </div>
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {newArrivals.map((p) => (
               <Link
                 key={p.id}
