@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id          String     @id @default(cuid())
+  email       String     @unique
+  password    String
+  companyName String
+  bizRegNo    String
+  contactName String
+  phone       String
+  isApproved  Boolean    @default(true)
+  role        String     @default("member")
+  createdAt   DateTime   @default(now())
+  cartItems   CartItem[]
+  orders      Order[]
+}
+
+model Category {
+  id         String    @id @default(cuid())
+  slug       String    @unique
+  name       String
+  depth1     String
+  depth1Slug String
+  depth2     String
+  depth2Slug String
+  depth3     String    @default("")
+  visible    Boolean   @default(true)
+  sortOrder  Int       @default(0)
+  createdAt  DateTime  @default(now())
+  products   Product[]
+}
+
+model Product {
+  id                 String   @id @default(cuid())
+  categorySlug       String
+  category           Category @relation(fields: [categorySlug], references: [slug])
+  productIdx         String   @default("")
+  modelName          String
+  productName        String
+  priceText          String   @default("회원가")
+  price              Int      @default(0)
+  priceOriginal      Int      @default(0)
+  priceMember        Int      @default(0)
+  priceDiscount      Int      @default(0)
+  thumbnail          String   @default("")
+  isReturnRestricted Boolean  @default(false)
+  soldCount          Int      @default(0)
+  visible            Boolean  @default(true)
+  outOfStock         Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model CartItem {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId   String
+  productName String
+  modelName   String
+  price       Int
+  thumbnail   String
+  quantity    Int      @default(1)
+  createdAt   DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  orderNo       String      @unique
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  totalAmount   Int
+  depositorName String
+  receiverName  String
+  receiverPhone String
+  address       String
+  addressDetail String?
+  zipCode       String?
+  memo          String?
+  status        String      @default("입금대기")
+  createdAt     DateTime    @default(now())
+  items         OrderItem[]
+}
+
+model OrderItem {
+  id          String @id @default(cuid())
+  orderId     String
+  order       Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  productName String
+  modelName   String
+  price       Int
+  quantity    Int
+  thumbnail   String
+}

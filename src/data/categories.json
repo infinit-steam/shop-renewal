@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "cat_001",
+    "slug": "c3-s1",
+    "depth1": "소프트/하드 케이스",
+    "depth1Slug": "c3",
+    "depth2": "투명 젤리케이스",
+    "depth2Slug": "c3-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=3&cate2=1"
+  },
+  {
+    "id": "cat_002",
+    "slug": "c3-s2",
+    "depth1": "소프트/하드 케이스",
+    "depth1Slug": "c3",
+    "depth2": "컬러 젤리케이스",
+    "depth2Slug": "c3-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=3&cate2=2"
+  },
+  {
+    "id": "cat_003",
+    "slug": "c3-s3",
+    "depth1": "소프트/하드 케이스",
+    "depth1Slug": "c3",
+    "depth2": "캐릭터젤리",
+    "depth2Slug": "c3-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=3&cate2=3"
+  },
+  {
+    "id": "cat_004",
+    "slug": "c3-s4",
+    "depth1": "소프트/하드 케이스",
+    "depth1Slug": "c3",
+    "depth2": "반투명젤리",
+    "depth2Slug": "c3-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=3&cate2=4"
+  },
+  {
+    "id": "cat_005",
+    "slug": "c3-s5",
+    "depth1": "소프트/하드 케이스",
+    "depth1Slug": "c3",
+    "depth2": "투명 하드케이스",
+    "depth2Slug": "c3-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=3&cate2=5"
+  },
+  {
+    "id": "cat_006",
+    "slug": "c3-s6",
+    "depth1": "소프트/하드 케이스",
+    "depth1Slug": "c3",
+    "depth2": "컬러 하드케이스",
+    "depth2Slug": "c3-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=3&cate2=6"
+  },
+  {
+    "id": "cat_007",
+    "slug": "c3-s7",
+    "depth1": "소프트/하드 케이스",
+    "depth1Slug": "c3",
+    "depth2": "컬러 범퍼 케이스",
+    "depth2Slug": "c3-s7",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=3&cate2=7"
+  },
+  {
+    "id": "cat_008",
+    "slug": "c5-s1",
+    "depth1": "다이어리케이스",
+    "depth1Slug": "c5",
+    "depth2": "지갑형 다이어리",
+    "depth2Slug": "c5-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=5&cate2=1"
+  },
+  {
+    "id": "cat_009",
+    "slug": "c5-s2",
+    "depth1": "다이어리케이스",
+    "depth1Slug": "c5",
+    "depth2": "일반형 다이어리",
+    "depth2Slug": "c5-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=5&cate2=2"
+  },
+  {
+    "id": "cat_010",
+    "slug": "c5-s3",
+    "depth1": "다이어리케이스",
+    "depth1Slug": "c5",
+    "depth2": "다이어리케이스(구)",
+    "depth2Slug": "c5-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=5&cate2=3"
+  },
+  {
+    "id": "cat_011",
+    "slug": "c5-s4",
+    "depth1": "다이어리케이스",
+    "depth1Slug": "c5",
+    "depth2": "기타 케이스",
+    "depth2Slug": "c5-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=5&cate2=4"
+  },
+  {
+    "id": "cat_012",
+    "slug": "c6-s1",
+    "depth1": "갤럭시 플립/폴드 케이스",
+    "depth1Slug": "c6",
+    "depth2": "플립 투명 케이스",
+    "depth2Slug": "c6-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=6&cate2=1"
+  },
+  {
+    "id": "cat_013",
+    "slug": "c6-s2",
+    "depth1": "갤럭시 플립/폴드 케이스",
+    "depth1Slug": "c6",
+    "depth2": "플립 다이어리 케이스",
+    "depth2Slug": "c6-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=6&cate2=2"
+  },
+  {
+    "id": "cat_014",
+    "slug": "c6-s3",
+    "depth1": "갤럭시 플립/폴드 케이스",
+    "depth1Slug": "c6",
+    "depth2": "플립 컬러 케이스",
+    "depth2Slug": "c6-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=6&cate2=3"
+  },
+  {
+    "id": "cat_015",
+    "slug": "c6-s4",
+    "depth1": "갤럭시 플립/폴드 케이스",
+    "depth1Slug": "c6",
+    "depth2": "폴드 투명 케이스",
+    "depth2Slug": "c6-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=6&cate2=4"
+  },
+  {
+    "id": "cat_016",
+    "slug": "c6-s5",
+    "depth1": "갤럭시 플립/폴드 케이스",
+    "depth1Slug": "c6",
+    "depth2": "폴드 다이어리 케이스",
+    "depth2Slug": "c6-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=6&cate2=5"
+  },
+  {
+    "id": "cat_017",
+    "slug": "c6-s6",
+    "depth1": "갤럭시 플립/폴드 케이스",
+    "depth1Slug": "c6",
+    "depth2": "폴드 컬러 케이스",
+    "depth2Slug": "c6-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=6&cate2=6"
+  },
+  {
+    "id": "cat_018",
+    "slug": "c7-s1",
+    "depth1": "거치대",
+    "depth1Slug": "c7",
+    "depth2": "차량용",
+    "depth2Slug": "c7-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=7&cate2=1"
+  },
+  {
+    "id": "cat_019",
+    "slug": "c7-s2",
+    "depth1": "거치대",
+    "depth1Slug": "c7",
+    "depth2": "자전거용",
+    "depth2Slug": "c7-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=7&cate2=2"
+  },
+  {
+    "id": "cat_020",
+    "slug": "c7-s3",
+    "depth1": "거치대",
+    "depth1Slug": "c7",
+    "depth2": "다용도",
+    "depth2Slug": "c7-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=7&cate2=3"
+  },
+  {
+    "id": "cat_021",
+    "slug": "c7-s4",
+    "depth1": "거치대",
+    "depth1Slug": "c7",
+    "depth2": "스쿠터용",
+    "depth2Slug": "c7-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=7&cate2=4"
+  },
+  {
+    "id": "cat_022",
+    "slug": "c8-s1",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "방탄필름",
+    "depth2Slug": "c8-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=1"
+  },
+  {
+    "id": "cat_023",
+    "slug": "c8-s2",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "강화유리필름",
+    "depth2Slug": "c8-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=2"
+  },
+  {
+    "id": "cat_024",
+    "slug": "c8-s3",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "우레탄(TPU)",
+    "depth2Slug": "c8-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=3"
+  },
+  {
+    "id": "cat_025",
+    "slug": "c8-s4",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "강화액정필름",
+    "depth2Slug": "c8-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=4"
+  },
+  {
+    "id": "cat_026",
+    "slug": "c8-s5",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "고선명 풀커버 필름",
+    "depth2Slug": "c8-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=5"
+  },
+  {
+    "id": "cat_027",
+    "slug": "c8-s6",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "포밍필름",
+    "depth2Slug": "c8-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=6"
+  },
+  {
+    "id": "cat_028",
+    "slug": "c8-s7",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "카메라 보호 필름",
+    "depth2Slug": "c8-s7",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=7"
+  },
+  {
+    "id": "cat_029",
+    "slug": "c8-s8",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "방탄유리필름",
+    "depth2Slug": "c8-s8",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=8"
+  },
+  {
+    "id": "cat_030",
+    "slug": "c8-s9",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "블루라이트 차단필름",
+    "depth2Slug": "c8-s9",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=9"
+  },
+  {
+    "id": "cat_031",
+    "slug": "c8-s10",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "나노 필름",
+    "depth2Slug": "c8-s10",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=10"
+  },
+  {
+    "id": "cat_032",
+    "slug": "c8-s11",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "매직컬 자가복원 필름",
+    "depth2Slug": "c8-s11",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=11"
+  },
+  {
+    "id": "cat_033",
+    "slug": "c8-s12",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "스케치 필름",
+    "depth2Slug": "c8-s12",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=12"
+  },
+  {
+    "id": "cat_034",
+    "slug": "c8-s13",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "지문방지필름",
+    "depth2Slug": "c8-s13",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=13"
+  },
+  {
+    "id": "cat_035",
+    "slug": "c8-s14",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "강화유리필름(1매)",
+    "depth2Slug": "c8-s14",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=14"
+  },
+  {
+    "id": "cat_036",
+    "slug": "c8-s15",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "강화유리필름(5매)",
+    "depth2Slug": "c8-s15",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=15"
+  },
+  {
+    "id": "cat_037",
+    "slug": "c8-s16",
+    "depth1": "보호필름",
+    "depth1Slug": "c8",
+    "depth2": "강화유리필름(10매)",
+    "depth2Slug": "c8-s16",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=8&cate2=16"
+  },
+  {
+    "id": "cat_038",
+    "slug": "c9-s1",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "가정용충전기",
+    "depth2Slug": "c9-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=1"
+  },
+  {
+    "id": "cat_039",
+    "slug": "c9-s2",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "차량용충전기",
+    "depth2Slug": "c9-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=2"
+  },
+  {
+    "id": "cat_040",
+    "slug": "c9-s3",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "보조배터리",
+    "depth2Slug": "c9-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=3"
+  },
+  {
+    "id": "cat_041",
+    "slug": "c9-s4",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "무선충전기",
+    "depth2Slug": "c9-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=4"
+  },
+  {
+    "id": "cat_042",
+    "slug": "c9-s5",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "표준배터리",
+    "depth2Slug": "c9-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=5"
+  },
+  {
+    "id": "cat_043",
+    "slug": "c9-s6",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "휴대폰 충전거치대",
+    "depth2Slug": "c9-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=6"
+  },
+  {
+    "id": "cat_044",
+    "slug": "c9-s7",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "업소용 충전기",
+    "depth2Slug": "c9-s7",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=7"
+  },
+  {
+    "id": "cat_045",
+    "slug": "c9-s8",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "손난로+보조배터리",
+    "depth2Slug": "c9-s8",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=8"
+  },
+  {
+    "id": "cat_046",
+    "slug": "c9-s9",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "충전용품 8종세트",
+    "depth2Slug": "c9-s9",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=9"
+  },
+  {
+    "id": "cat_047",
+    "slug": "c9-s10",
+    "depth1": "충전용품",
+    "depth1Slug": "c9",
+    "depth2": "도난방지용 충전기",
+    "depth2Slug": "c9-s10",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=9&cate2=10"
+  },
+  {
+    "id": "cat_048",
+    "slug": "c10-s1",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "데이터케이블",
+    "depth2Slug": "c10-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=1"
+  },
+  {
+    "id": "cat_049",
+    "slug": "c10-s2",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "젠더",
+    "depth2Slug": "c10-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=2"
+  },
+  {
+    "id": "cat_050",
+    "slug": "c10-s3",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "메모리카드",
+    "depth2Slug": "c10-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=3"
+  },
+  {
+    "id": "cat_051",
+    "slug": "c10-s4",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "OTG",
+    "depth2Slug": "c10-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=4"
+  },
+  {
+    "id": "cat_052",
+    "slug": "c10-s5",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "주변기기",
+    "depth2Slug": "c10-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=5"
+  },
+  {
+    "id": "cat_053",
+    "slug": "c10-s6",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "이어폰 연결 케이블",
+    "depth2Slug": "c10-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=6"
+  },
+  {
+    "id": "cat_054",
+    "slug": "c10-s7",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "USB",
+    "depth2Slug": "c10-s7",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=7"
+  },
+  {
+    "id": "cat_055",
+    "slug": "c10-s8",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "덱스 스테이션",
+    "depth2Slug": "c10-s8",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=8"
+  },
+  {
+    "id": "cat_056",
+    "slug": "c10-s9",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "이어폰 연결 이어잭",
+    "depth2Slug": "c10-s9",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=9"
+  },
+  {
+    "id": "cat_057",
+    "slug": "c10-s10",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "메모리 리더기",
+    "depth2Slug": "c10-s10",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=10"
+  },
+  {
+    "id": "cat_058",
+    "slug": "c10-s11",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "미러링 케이블",
+    "depth2Slug": "c10-s11",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=11"
+  },
+  {
+    "id": "cat_059",
+    "slug": "c10-s12",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "마그네틱 데이터케이블",
+    "depth2Slug": "c10-s12",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=12"
+  },
+  {
+    "id": "cat_060",
+    "slug": "c10-s13",
+    "depth1": "연결기기",
+    "depth1Slug": "c10",
+    "depth2": "거치형케이블",
+    "depth2Slug": "c10-s13",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=10&cate2=13"
+  },
+  {
+    "id": "cat_061",
+    "slug": "c11-s1",
+    "depth1": "이어폰/블루투스",
+    "depth1Slug": "c11",
+    "depth2": "이어폰",
+    "depth2Slug": "c11-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=11&cate2=1"
+  },
+  {
+    "id": "cat_062",
+    "slug": "c11-s2",
+    "depth1": "이어폰/블루투스",
+    "depth1Slug": "c11",
+    "depth2": "블루투스",
+    "depth2Slug": "c11-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=11&cate2=2"
+  },
+  {
+    "id": "cat_063",
+    "slug": "c11-s3",
+    "depth1": "이어폰/블루투스",
+    "depth1Slug": "c11",
+    "depth2": "스피커",
+    "depth2Slug": "c11-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=11&cate2=3"
+  },
+  {
+    "id": "cat_064",
+    "slug": "c11-s4",
+    "depth1": "이어폰/블루투스",
+    "depth1Slug": "c11",
+    "depth2": "스피커+LED램프",
+    "depth2Slug": "c11-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=11&cate2=4"
+  },
+  {
+    "id": "cat_065",
+    "slug": "c11-s5",
+    "depth1": "이어폰/블루투스",
+    "depth1Slug": "c11",
+    "depth2": "헤드셋",
+    "depth2Slug": "c11-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=11&cate2=5"
+  },
+  {
+    "id": "cat_066",
+    "slug": "c11-s6",
+    "depth1": "이어폰/블루투스",
+    "depth1Slug": "c11",
+    "depth2": "골전도 블루투스 헤드셋",
+    "depth2Slug": "c11-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=11&cate2=6"
+  },
+  {
+    "id": "cat_067",
+    "slug": "c11-s7",
+    "depth1": "이어폰/블루투스",
+    "depth1Slug": "c11",
+    "depth2": "넥밴드",
+    "depth2Slug": "c11-s7",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=11&cate2=7"
+  },
+  {
+    "id": "cat_068",
+    "slug": "c13-s1",
+    "depth1": "태블릿PC",
+    "depth1Slug": "c13",
+    "depth2": "강화필름",
+    "depth2Slug": "c13-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=13&cate2=1"
+  },
+  {
+    "id": "cat_069",
+    "slug": "c13-s2",
+    "depth1": "태블릿PC",
+    "depth1Slug": "c13",
+    "depth2": "지문방지필름",
+    "depth2Slug": "c13-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=13&cate2=2"
+  },
+  {
+    "id": "cat_070",
+    "slug": "c13-s3",
+    "depth1": "태블릿PC",
+    "depth1Slug": "c13",
+    "depth2": "케이스",
+    "depth2Slug": "c13-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=13&cate2=3"
+  },
+  {
+    "id": "cat_071",
+    "slug": "c13-s4",
+    "depth1": "태블릿PC",
+    "depth1Slug": "c13",
+    "depth2": "거치대",
+    "depth2Slug": "c13-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=13&cate2=4"
+  },
+  {
+    "id": "cat_072",
+    "slug": "c14-s1",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "허리집",
+    "depth2Slug": "c14-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=1"
+  },
+  {
+    "id": "cat_073",
+    "slug": "c14-s2",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "카메라보호링",
+    "depth2Slug": "c14-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=2"
+  },
+  {
+    "id": "cat_074",
+    "slug": "c14-s3",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "카드포켓",
+    "depth2Slug": "c14-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=3"
+  },
+  {
+    "id": "cat_075",
+    "slug": "c14-s4",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "기타상품",
+    "depth2Slug": "c14-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=4"
+  },
+  {
+    "id": "cat_076",
+    "slug": "c14-s5",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "보조배터리 손난로파우치",
+    "depth2Slug": "c14-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=5"
+  },
+  {
+    "id": "cat_077",
+    "slug": "c14-s6",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "카드홀더",
+    "depth2Slug": "c14-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=6"
+  },
+  {
+    "id": "cat_078",
+    "slug": "c14-s7",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "에어팟이어폰 스트랩",
+    "depth2Slug": "c14-s7",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=7"
+  },
+  {
+    "id": "cat_079",
+    "slug": "c14-s8",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "차량용 가습기+충전기",
+    "depth2Slug": "c14-s8",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=8"
+  },
+  {
+    "id": "cat_080",
+    "slug": "c14-s9",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "노트북 파우치 가방",
+    "depth2Slug": "c14-s9",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=9"
+  },
+  {
+    "id": "cat_081",
+    "slug": "c14-s10",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "이어폰파우치&거치대",
+    "depth2Slug": "c14-s10",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=10"
+  },
+  {
+    "id": "cat_082",
+    "slug": "c14-s11",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "게임 패드",
+    "depth2Slug": "c14-s11",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=11"
+  },
+  {
+    "id": "cat_083",
+    "slug": "c14-s12",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "정품 마블 클러치백",
+    "depth2Slug": "c14-s12",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=12"
+  },
+  {
+    "id": "cat_084",
+    "slug": "c14-s13",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "휴대폰 삼각대 헤드거치대",
+    "depth2Slug": "c14-s13",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=13"
+  },
+  {
+    "id": "cat_085",
+    "slug": "c14-s14",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "에어팟 케이스",
+    "depth2Slug": "c14-s14",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=14"
+  },
+  {
+    "id": "cat_086",
+    "slug": "c14-s15",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "카카오 휴대폰거치대 방향제",
+    "depth2Slug": "c14-s15",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=15"
+  },
+  {
+    "id": "cat_087",
+    "slug": "c14-s16",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "케이블 홀더(선정리)",
+    "depth2Slug": "c14-s16",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=16"
+  },
+  {
+    "id": "cat_088",
+    "slug": "c14-s17",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "갤럭시 버즈/버즈라이브 케이스",
+    "depth2Slug": "c14-s17",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=17"
+  },
+  {
+    "id": "cat_089",
+    "slug": "c14-s18",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "코닥 프린터",
+    "depth2Slug": "c14-s18",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=18"
+  },
+  {
+    "id": "cat_090",
+    "slug": "c14-s19",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "워치 케이스",
+    "depth2Slug": "c14-s19",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=19"
+  },
+  {
+    "id": "cat_091",
+    "slug": "c14-s20",
+    "depth1": "액세서리",
+    "depth1Slug": "c14",
+    "depth2": "스트랩",
+    "depth2Slug": "c14-s20",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=14&cate2=20"
+  },
+  {
+    "id": "cat_092",
+    "slug": "c21-s1",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "무드등/램프",
+    "depth2Slug": "c21-s1",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=1"
+  },
+  {
+    "id": "cat_093",
+    "slug": "c21-s2",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "가습기",
+    "depth2Slug": "c21-s2",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=2"
+  },
+  {
+    "id": "cat_094",
+    "slug": "c21-s3",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "셀카봉",
+    "depth2Slug": "c21-s3",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=3"
+  },
+  {
+    "id": "cat_095",
+    "slug": "c21-s4",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "스마트/그립톡",
+    "depth2Slug": "c21-s4",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=4"
+  },
+  {
+    "id": "cat_096",
+    "slug": "c21-s5",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "컴퓨터주변기기",
+    "depth2Slug": "c21-s5",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=5"
+  },
+  {
+    "id": "cat_097",
+    "slug": "c21-s6",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "캠핑용품",
+    "depth2Slug": "c21-s6",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=6"
+  },
+  {
+    "id": "cat_098",
+    "slug": "c21-s7",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "겨울용품",
+    "depth2Slug": "c21-s7",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=7"
+  },
+  {
+    "id": "cat_099",
+    "slug": "c21-s8",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "여름용품",
+    "depth2Slug": "c21-s8",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=8"
+  },
+  {
+    "id": "cat_100",
+    "slug": "c21-s9",
+    "depth1": "생활잡화",
+    "depth1Slug": "c21",
+    "depth2": "기타상품",
+    "depth2Slug": "c21-s9",
+    "depth3": "",
+    "originalUrl": "http://phonesesang.co.kr/main/sub/?cate1=21&cate2=9"
+  }
+]
