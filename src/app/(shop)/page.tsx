@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import { categories, flatCategories } from "@/data/mockData";
 import { prisma } from "@/lib/db";
+import ProductImage from "@/components/ProductImage";
 
 export const instant = false;
 
@@ -12,6 +12,19 @@ const QUICK_TAGS = [
   { label: "#맥세이프", q: "맥세이프" },
   { label: "#강화유리", q: "강화유리" },
 ];
+
+async function getBannerImages() {
+  try {
+    return await prisma.product.findMany({
+      where: { visible: true, thumbnail: { not: "" } },
+      orderBy: { soldCount: "desc" },
+      take: 4,
+      select: { id: true, thumbnail: true, modelName: true },
+    });
+  } catch {
+    return [];
+  }
+}
 
 async function getNewArrivals() {
   try {
@@ -62,7 +75,8 @@ async function getCategoryThumbnails(): Promise<Record<string, string[]>> {
 }
 
 export default async function Home() {
-  const [newArrivals, categoryThumbs] = await Promise.all([
+  const [bannerImages, newArrivals, categoryThumbs] = await Promise.all([
+    getBannerImages(),
     getNewArrivals(),
     getCategoryThumbnails(),
   ]);
@@ -102,50 +116,30 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Right: phone SVG illustration */}
-          <div className="hidden md:flex items-center justify-center pr-8 opacity-90">
-            <svg width="150" height="300" viewBox="0 0 150 300" aria-hidden="true">
-              <defs>
-                <linearGradient id="phoneBody" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#334155" />
-                  <stop offset="100%" stopColor="#1E293B" />
-                </linearGradient>
-                <linearGradient id="screen" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#0F172A" />
-                  <stop offset="100%" stopColor="#1e1b4b" />
-                </linearGradient>
-                <linearGradient id="caseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                </linearGradient>
-              </defs>
-              {/* Phone case (outer) */}
-              <rect x="4" y="4" width="142" height="292" rx="26" fill="url(#caseGrad)" />
-              {/* Phone body */}
-              <rect x="10" y="10" width="130" height="280" rx="22" fill="url(#phoneBody)" />
-              {/* Screen */}
-              <rect x="17" y="24" width="116" height="242" rx="14" fill="url(#screen)" />
-              {/* Dynamic island */}
-              <rect x="52" y="30" width="46" height="12" rx="6" fill="#0F172A" />
-              {/* Product grid on screen */}
-              <rect x="23" y="52" width="48" height="48" rx="7" fill="#312E81" opacity="0.9"/>
-              <rect x="79" y="52" width="48" height="48" rx="7" fill="#1e3a8a" opacity="0.9"/>
-              <rect x="23" y="108" width="48" height="48" rx="7" fill="#1e3a8a" opacity="0.9"/>
-              <rect x="79" y="108" width="48" height="48" rx="7" fill="#312E81" opacity="0.9"/>
-              {/* Product label bars */}
-              <rect x="23" y="164" width="104" height="8" rx="4" fill="#6366f1" opacity="0.5"/>
-              <rect x="23" y="178" width="76" height="6" rx="3" fill="#94a3b8" opacity="0.35"/>
-              <rect x="23" y="190" width="52" height="6" rx="3" fill="#94a3b8" opacity="0.25"/>
-              {/* Price badge */}
-              <rect x="23" y="204" width="44" height="14" rx="7" fill="#6366f1" opacity="0.6"/>
-              <rect x="27" y="207" width="36" height="8" rx="4" fill="#c7d2fe" opacity="0.9"/>
-              {/* Home indicator */}
-              <rect x="57" y="263" width="36" height="4" rx="2" fill="#475569" />
-            </svg>
-          </div>
+          {/* Right: real product image collage */}
+          {bannerImages.length >= 2 && (
+            <div className="hidden md:flex items-center justify-end pr-7 self-stretch py-6">
+              <div className="grid grid-cols-2 gap-2">
+                {bannerImages.map((img) => (
+                  <div
+                    key={img.id}
+                    className="relative w-[90px] h-[90px] rounded-xl overflow-hidden bg-white/10 ring-1 ring-white/20"
+                  >
+                    <ProductImage
+                      src={img.thumbnail}
+                      alt={img.modelName}
+                      fill
+                      className="object-contain p-1.5"
+                      sizes="90px"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Background glow */}
+        {/* Background glows */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-1/4 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
       </div>
@@ -170,13 +164,12 @@ export default async function Home() {
                   {thumbs.length > 0 ? (
                     thumbs.map((src, i) => (
                       <div key={i} className="flex-1 relative border-r border-slate-100 last:border-r-0">
-                        <Image
+                        <ProductImage
                           src={src}
                           alt=""
                           fill
                           className="object-contain p-1.5"
                           sizes="100px"
-                          unoptimized
                         />
                       </div>
                     ))
@@ -226,13 +219,12 @@ export default async function Home() {
                 className="group bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md hover:border-indigo-300 transition-all duration-200"
               >
                 <div className="relative aspect-square bg-slate-50">
-                  <Image
-                    src={p.thumbnail || "/images/products/img_0001.jpg"}
+                  <ProductImage
+                    src={p.thumbnail ?? ""}
                     alt={p.productName}
                     fill
                     className="object-contain p-2"
                     sizes="150px"
-                    unoptimized
                   />
                 </div>
                 <div className="p-2.5">

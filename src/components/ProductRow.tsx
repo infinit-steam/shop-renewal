@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ProductImage from "@/components/ProductImage";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { type FlatProduct } from "@/data/mockData";
@@ -35,13 +35,12 @@ export default function ProductRow({ product }: Props) {
 
       {/* 썸네일 */}
       <div className="flex-shrink-0 w-[90px] h-[90px] border-r border-gray-100 relative overflow-hidden bg-gray-100">
-        <Image
+        <ProductImage
           src={product.thumbnail}
           alt={product.productName}
           fill
           className="object-contain p-1"
           sizes="90px"
-          unoptimized
         />
       </div>
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { prisma } from "@/lib/db";
+import ProductImage from "@/components/ProductImage";
 
 export const instant = false;
 
@@ -76,13 +76,12 @@ export default async function SearchPage({ searchParams }: Props) {
               className="group bg-white border border-slate-200 rounded-xl overflow-hidden hover:shadow-md hover:border-indigo-300 transition-all duration-200"
             >
               <div className="relative aspect-square bg-slate-50">
-                <Image
-                  src={p.thumbnail || "/images/products/img_0001.jpg"}
+                <ProductImage
+                  src={p.thumbnail ?? ""}
                   alt={p.productName}
                   fill
                   className="object-contain p-2"
                   sizes="150px"
-                  unoptimized
                 />
               </div>
               <div className="p-2.5">

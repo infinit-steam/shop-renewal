@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ProductImage from "@/components/ProductImage";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { type FlatProduct } from "@/data/mockData";
@@ -33,13 +33,12 @@ export default function ProductGrid({ product }: Props) {
   return (
     <div className="border border-gray-200 rounded bg-white hover:shadow-md transition-shadow flex flex-col">
       <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-t">
-        <Image
+        <ProductImage
           src={product.thumbnail}
           alt={product.productName}
           fill
           className="object-contain p-2"
           sizes="200px"
-          unoptimized
         />
       </div>
       <div className="p-3 flex flex-col flex-1">
