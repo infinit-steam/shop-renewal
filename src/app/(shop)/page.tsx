@@ -48,27 +48,31 @@ async function getNewArrivals() {
 
 async function getCategoryThumbnails(): Promise<Record<string, string[]>> {
   try {
-    const slugToDepth1: Record<string, string> = {};
+    // Build depth1Slug -> leafSlugs map
+    const depth1ToLeafs: Record<string, string[]> = {};
     for (const fc of flatCategories) {
-      slugToDepth1[fc.slug] = fc.depth1Slug;
+      if (!depth1ToLeafs[fc.depth1Slug]) depth1ToLeafs[fc.depth1Slug] = [];
+      depth1ToLeafs[fc.depth1Slug].push(fc.slug);
     }
 
-    const products = await prisma.product.findMany({
-      where: { visible: true, thumbnail: { not: "" } },
-      select: { categorySlug: true, thumbnail: true },
-      orderBy: { soldCount: "desc" },
-      take: 300,
-    });
+    // One small query per depth-1 category so every category is covered
+    // regardless of soldCount distribution (all zeroes → take:N skews to first N rows)
+    const entries = await Promise.all(
+      Object.entries(depth1ToLeafs).map(async ([depth1, leafSlugs]) => {
+        const rows = await prisma.product.findMany({
+          where: {
+            categorySlug: { in: leafSlugs },
+            visible: true,
+            thumbnail: { not: "" },
+          },
+          select: { thumbnail: true },
+          take: 2,
+        });
+        return [depth1, rows.map((r) => r.thumbnail)] as const;
+      })
+    );
 
-    const result: Record<string, string[]> = {};
-    for (const p of products) {
-      if (!p.thumbnail) continue;
-      const depth1 = slugToDepth1[p.categorySlug];
-      if (!depth1) continue;
-      if (!result[depth1]) result[depth1] = [];
-      if (result[depth1].length < 2) result[depth1].push(p.thumbnail);
-    }
-    return result;
+    return Object.fromEntries(entries);
   } catch {
     return {};
   }
