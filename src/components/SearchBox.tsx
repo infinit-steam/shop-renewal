@@ -99,7 +99,8 @@ export default function SearchBox({ className = "", mobile = false }: { classNam
     } else {
       addRecent({ id: item.product.id, productName: item.product.productName, thumbnail: item.product.thumbnail });
       setQuery(item.product.productName);
-      go(item.product.productName);
+      setOpen(false);
+      router.push(`/product/${item.product.id}`);
     }
   };
 

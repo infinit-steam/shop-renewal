@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type FlatProduct } from "@/data/mockData";
 import { addRecent } from "@/lib/recentProducts";
@@ -73,7 +74,7 @@ export default function ProductRow({
       </div>
 
       {/* Thumbnail */}
-      <div className="flex-shrink-0 w-[72px] h-[72px] md:w-[90px] md:h-[90px] border-r border-gray-100 relative overflow-hidden bg-gray-50">
+      <Link href={`/product/${product.id}`} className="flex-shrink-0 w-[72px] h-[72px] md:w-[90px] md:h-[90px] border-r border-gray-100 relative overflow-hidden bg-gray-50 block">
         <ProductImage
           src={product.thumbnail}
           alt={product.productName}
@@ -81,13 +82,13 @@ export default function ProductRow({
           className="object-contain p-1"
           sizes="90px"
         />
-      </div>
+      </Link>
 
       {/* ── Mobile layout ─────────────────────────────────── */}
       <div className="md:hidden flex-1 px-3 py-2 min-w-0 flex flex-col justify-between">
         <div>
           <p className="text-xs text-slate-500 truncate">{product.modelName}</p>
-          <p className="text-sm font-semibold text-slate-800 line-clamp-2 leading-snug mt-0.5">
+          <Link href={`/product/${product.id}`} className="block text-sm font-semibold text-slate-800 line-clamp-2 leading-snug mt-0.5 hover:text-indigo-700">
             {product.productName}
             {product.isReturnRestricted && (
               <span className="text-red-500 text-[10px] font-normal ml-1">*반품불가*</span>
@@ -95,7 +96,7 @@ export default function ProductRow({
             {outOfStock && (
               <span className="text-red-500 text-[10px] font-normal ml-1">*품절*</span>
             )}
-          </p>
+          </Link>
         </div>
         <div className="flex items-center justify-between mt-2">
           {user ? (
@@ -128,7 +129,7 @@ export default function ProductRow({
 
         {/* 상품명 */}
         <div className="flex-1 flex items-center px-3 border-r border-gray-100 min-w-0">
-          <p className="text-sm font-semibold text-gray-900 leading-snug line-clamp-2">
+          <Link href={`/product/${product.id}`} className="text-sm font-semibold text-gray-900 leading-snug line-clamp-2 hover:text-indigo-700">
             {product.productName}
             {product.isReturnRestricted && (
               <span className="ml-1 text-red-500 text-xs font-normal whitespace-nowrap">
@@ -140,7 +141,7 @@ export default function ProductRow({
                 *품절*
               </span>
             )}
-          </p>
+          </Link>
         </div>
 
         {/* 가격 */}

@@ -88,7 +88,7 @@ export function RightWing() {
         ) : (
           <div className="flex flex-col gap-1.5">
             {recent.map((p) => (
-              <Link key={p.id} href={`/search?q=${encodeURIComponent(p.productName)}`} title={p.productName}>
+              <Link key={p.id} href={`/product/${p.id}`} title={p.productName}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={p.thumbnail || undefined} alt={p.productName} className="w-full aspect-square object-cover rounded-lg border border-slate-200 bg-slate-100" />
               </Link>

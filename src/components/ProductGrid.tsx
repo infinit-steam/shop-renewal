@@ -2,6 +2,7 @@
 
 import ProductImage from "@/components/ProductImage";
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type FlatProduct } from "@/data/mockData";
 import { addRecent } from "@/lib/recentProducts";
@@ -34,7 +35,7 @@ export default function ProductGrid({ product }: Props) {
 
   return (
     <div className="border border-gray-200 rounded bg-white hover:shadow-md transition-shadow flex flex-col">
-      <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-t">
+      <Link href={`/product/${product.id}`} className="relative block w-full aspect-square bg-gray-100 overflow-hidden rounded-t">
         <ProductImage
           src={product.thumbnail}
           alt={product.productName}
@@ -42,15 +43,15 @@ export default function ProductGrid({ product }: Props) {
           className="object-contain p-2"
           sizes="200px"
         />
-      </div>
+      </Link>
       <div className="p-3 flex flex-col flex-1">
         <p className="text-xs text-gray-400 mb-0.5 truncate">{product.modelName}</p>
-        <p className="text-sm font-semibold text-gray-900 leading-snug flex-1 line-clamp-3">
+        <Link href={`/product/${product.id}`} className="text-sm font-semibold text-gray-900 leading-snug flex-1 line-clamp-3 hover:text-indigo-700">
           {product.productName}
           {product.isReturnRestricted && (
             <span className="text-red-500 text-xs font-normal"> *반품불가*</span>
           )}
-        </p>
+        </Link>
         <div className="mt-2">
           {user ? (
             <>
