@@ -58,10 +58,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "필수 항목을 입력해주세요." }, { status: 400 });
   }
 
-  const product = await prisma.product.create({
-    data: {
+  // 상품코드가 없으면 임시 코드 발급, 있으면 (카테고리, 상품코드) 기준 upsert 로 중복 방지
+  const productIdx = String(data.productIdx ?? "").trim() || `manual-${Date.now()}`;
+  const fields = {
       categorySlug,
-      productIdx:         data.productIdx ?? "",
+      productIdx,
       modelName,
       productName,
       priceText:          data.priceText ?? "회원가",
@@ -73,7 +74,11 @@ export async function POST(req: NextRequest) {
       isReturnRestricted: data.isReturnRestricted ?? false,
       visible:            data.visible ?? true,
       outOfStock:         data.outOfStock ?? false,
-    },
+  };
+  const product = await prisma.product.upsert({
+    where: { categorySlug_productIdx: { categorySlug, productIdx } },
+    create: fields,
+    update: fields,
   });
   return NextResponse.json(product, { status: 201 });
 }

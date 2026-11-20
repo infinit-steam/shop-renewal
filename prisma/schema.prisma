@@ -58,6 +58,8 @@ model Product {
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
+  // 같은 상품(상품코드)이 같은 카테고리에 중복 등록되는 것을 방지
+  @@unique([categorySlug, productIdx])
   @@index([categorySlug, visible, createdAt])
   @@index([categorySlug, visible, priceMember])
   @@index([categorySlug, visible, soldCount])

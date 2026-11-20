@@ -70,7 +70,16 @@ async function main() {
 
   // ── 3. 상품 (1,000개 단위 배치) ──────────────────────────────────
   console.log(`📦 상품 ${products.length.toLocaleString()}개 업로드 중...`);
-  const prodBatches = chunk(products, 1000);
+  // (categorySlug, productIdx) 기준 중복 제거 — 원본 JSON 에 중복이 있어도 1건만 적재
+  const seen = new Set<string>();
+  const uniqueProducts = products.filter((p) => {
+    const k = `${p.categorySlug}\u0001${p.productIdx ?? ""}`;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+  console.log(`   중복 제거: ${products.length - uniqueProducts.length}개`);
+  const prodBatches = chunk(uniqueProducts, 1000);
   let uploaded = 0;
 
   for (const batch of prodBatches) {

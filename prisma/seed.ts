@@ -97,15 +97,25 @@ async function main() {
       createdAt:          p.createdAt ? new Date(p.createdAt) : new Date(),
     }));
 
+  // 원본 JSON 에 중복이 있어도 (categorySlug, productIdx) 당 1건만 적재
+  const seen = new Set<string>();
+  const uniqueProds = prodData.filter((p) => {
+    const k = `${p.categorySlug}\u0001${p.productIdx}`;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+  console.log(`  중복 제거: ${prodData.length - uniqueProds.length}개`);
+
   // Delete all and re-seed in batches
   await prisma.product.deleteMany();
   const batchSize = 2000;
-  for (let i = 0; i < prodData.length; i += batchSize) {
-    const batch = prodData.slice(i, i + batchSize);
-    await prisma.product.createMany({ data: batch });
-    process.stdout.write(`\r✓ 상품 시드 중... ${Math.min(i + batchSize, prodData.length)}/${prodData.length}`);
+  for (let i = 0; i < uniqueProds.length; i += batchSize) {
+    const batch = uniqueProds.slice(i, i + batchSize);
+    await prisma.product.createMany({ data: batch, skipDuplicates: true });
+    process.stdout.write(`\r✓ 상품 시드 중... ${Math.min(i + batchSize, uniqueProds.length)}/${uniqueProds.length}`);
   }
-  console.log(`\n✓ 상품 ${prodData.length}개 시드 완료`);
+  console.log(`\n✓ 상품 ${uniqueProds.length}개 시드 완료`);
 }
 
 main()
