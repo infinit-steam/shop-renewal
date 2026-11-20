@@ -16,6 +16,7 @@ export type CartItem = {
 type CartContextType = {
   items: CartItem[];
   addItem: (item: Omit<CartItem, "id" | "quantity">) => Promise<void>;
+  addItems: (items: Array<{ productId: string; quantity: number; productName: string; modelName: string; price: number; thumbnail: string }>) => Promise<void>;
   updateQuantity: (id: string, quantity: number) => Promise<void>;
   removeItem: (id: string) => Promise<void>;
   totalCount: number;
@@ -26,6 +27,7 @@ type CartContextType = {
 const CartContext = createContext<CartContextType>({
   items: [],
   addItem: async () => {},
+  addItems: async () => {},
   updateQuantity: async () => {},
   removeItem: async () => {},
   totalCount: 0,
@@ -63,6 +65,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     await refresh();
   }, [user, refresh]);
 
+  const addItems = useCallback(async (items: Array<{ productId: string; quantity: number; productName: string; modelName: string; price: number; thumbnail: string }>) => {
+    if (!user) {
+      window.location.href = "/login";
+      return;
+    }
+    await fetch("/api/cart/bulk", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items }),
+    });
+    await refresh();
+  }, [user, refresh]);
+
   const updateQuantity = useCallback(async (id: string, quantity: number) => {
     await fetch(`/api/cart/${id}`, {
       method: "PATCH",
@@ -81,7 +96,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const totalAmount = items.reduce((s, i) => s + i.price * i.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ items, addItem, updateQuantity, removeItem, totalCount, totalAmount, refresh }}>
+    <CartContext.Provider value={{ items, addItem, addItems, updateQuantity, removeItem, totalCount, totalAmount, refresh }}>
       {children}
     </CartContext.Provider>
   );

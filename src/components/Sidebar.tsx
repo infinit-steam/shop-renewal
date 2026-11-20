@@ -2,6 +2,7 @@
 
 import { categories } from "@/data/mockData";
 import CategoryTree from "./CategoryTree";
+import CountdownBanner from "./CountdownBanner";
 
 export default function Sidebar() {
   return (
@@ -47,10 +48,7 @@ export default function Sidebar() {
               <span>11:30 ~ 12:30</span>
             </div>
           </div>
-          <div className="border-t border-slate-100 pt-1.5 text-center">
-            <span className="text-slate-500">택배 마감 </span>
-            <span className="font-bold text-red-600">평일 오후 4시</span>
-          </div>
+          <CountdownBanner variant="sidebar" />
         </div>
       </div>
 

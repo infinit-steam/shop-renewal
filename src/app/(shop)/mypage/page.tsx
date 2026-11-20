@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
 
 type OrderItem = {
   id: string;
@@ -41,10 +42,12 @@ function MyPageContent() {
   const { user, isLoading } = useAuth();
   const searchParams = useSearchParams();
   const latestOrder = searchParams.get("order");
+  const { addItems } = useCart();
 
   const [orders, setOrders] = useState<Order[]>([]);
   const [fetching, setFetching] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(latestOrder);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -55,6 +58,37 @@ function MyPageContent() {
         setFetching(false);
       });
   }, [user]);
+
+  const showToast = (message: string, type: "success" | "error" = "success") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 4000);
+  };
+
+  const handleReorder = async (orderId: string, orderNo: string) => {
+    if (!user) { window.location.href = "/login"; return; }
+
+    try {
+      const res = await fetch("/api/orders/reorder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        showToast(data.error || "재발주에 실패했습니다.", "error");
+        return;
+      }
+
+      showToast(data.message);
+      // 장바구니로 이동
+      setTimeout(() => {
+        window.location.href = "/cart";
+      }, 1500);
+    } catch {
+      showToast("재발주 처리 중 오류가 발생했습니다.", "error");
+    }
+  };
 
   if (isLoading) return <div className="py-20 text-center text-gray-400 text-sm">불러오는 중...</div>;
   if (!user) return (
@@ -68,6 +102,15 @@ function MyPageContent() {
 
   return (
     <div className="space-y-4">
+      {/* Toast */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-lg shadow-lg text-sm font-medium transition-all animate-slide-up ${
+          toast.type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"
+        }`}>
+          {toast.message}
+        </div>
+      )}
+
       {/* 회원 정보 */}
       <div className="bg-white border border-gray-200 rounded-lg p-5">
         <h1 className="text-base font-bold text-gray-900 mb-3">마이페이지</h1>
@@ -117,6 +160,15 @@ function MyPageContent() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-sm font-bold text-blue-700">{order.totalAmount.toLocaleString()}원</span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleReorder(order.id, order.orderNo);
+                      }}
+                      className="px-3 py-1.5 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 transition-colors whitespace-nowrap"
+                    >
+                      이 주문 상품 모두 장바구니에 담기
+                    </button>
                     <span className="text-gray-400 text-xs">{expanded === order.orderNo ? "▲" : "▼"}</span>
                   </div>
                 </button>

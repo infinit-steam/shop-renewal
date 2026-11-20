@@ -26,6 +26,7 @@ export type FlatProduct = {
   priceDiscount: number;
   thumbnail: string;
   isReturnRestricted: boolean;
+  outOfStock?: boolean;
   soldCount?: number;
   createdAt?: string;
 };

@@ -6,14 +6,33 @@ import { type FlatProduct } from "@/data/mockData";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import ProductImage from "@/components/ProductImage";
+import QuantityInput from "@/components/QuantityInput";
 
-type Props = { product: FlatProduct };
+type Props = {
+  product: FlatProduct;
+  onQuantityChange?: (productId: string, quantity: number) => void;
+  isSelected?: boolean;
+  onSelectChange?: (productId: string, selected: boolean) => void;
+};
 
-export default function ProductRow({ product }: Props) {
+export default function ProductRow({
+  product,
+  onQuantityChange,
+  isSelected = false,
+  onSelectChange,
+}: Props) {
   const { addItem } = useCart();
   const { user } = useAuth();
   const router = useRouter();
   const [added, setAdded] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  const handleQuantityChange = (newQty: number) => {
+    setQuantity(newQty);
+    if (onQuantityChange) onQuantityChange(product.id, newQty);
+    if (newQty > 0 && onSelectChange && !isSelected) onSelectChange(product.id, true);
+    if (newQty === 0 && onSelectChange && isSelected) onSelectChange(product.id, false);
+  };
 
   const handleAddToCart = async () => {
     if (!user) { router.push("/login"); return; }
@@ -28,10 +47,29 @@ export default function ProductRow({ product }: Props) {
     setTimeout(() => setAdded(false), 1200);
   };
 
+  const handleCheckboxChange = (checked: boolean) => {
+    if (onSelectChange) onSelectChange(product.id, checked);
+    if (checked && quantity === 0) handleQuantityChange(1);
+    if (!checked && quantity > 0) handleQuantityChange(0);
+  };
+
   const hasDiscount = product.priceOriginal > 0 && product.priceOriginal > product.priceMember;
+  const outOfStock = product.outOfStock;
 
   return (
     <div className="flex border-b border-gray-200 hover:bg-slate-50 transition-colors">
+      {/* Checkbox */}
+      <div className="flex-shrink-0 w-[50px] flex items-center justify-center border-r border-gray-100">
+        <input
+          type="checkbox"
+          checked={isSelected}
+          onChange={(e) => handleCheckboxChange(e.target.checked)}
+          disabled={outOfStock}
+          className="w-4 h-4 text-blue-700 border-gray-300 rounded focus:ring-blue-500 disabled:opacity-40"
+          aria-label={`${product.productName} 선택`}
+        />
+      </div>
+
       {/* Thumbnail */}
       <div className="flex-shrink-0 w-[72px] h-[72px] md:w-[90px] md:h-[90px] border-r border-gray-100 relative overflow-hidden bg-gray-50">
         <ProductImage
@@ -52,6 +90,9 @@ export default function ProductRow({ product }: Props) {
             {product.isReturnRestricted && (
               <span className="text-red-500 text-[10px] font-normal ml-1">*반품불가*</span>
             )}
+            {outOfStock && (
+              <span className="text-red-500 text-[10px] font-normal ml-1">*품절*</span>
+            )}
           </p>
         </div>
         <div className="flex items-center justify-between mt-2">
@@ -67,16 +108,12 @@ export default function ProductRow({ product }: Props) {
               로그인 후 확인
             </button>
           )}
-          <button
-            onClick={handleAddToCart}
-            className={`text-xs font-semibold px-3 py-1.5 rounded border transition-colors whitespace-nowrap ml-2 flex-shrink-0
-              ${added
-                ? "bg-green-600 text-white border-green-600"
-                : "text-indigo-700 border-indigo-700 hover:bg-indigo-700 hover:text-white"
-              }`}
-          >
-            {added ? "담김 ✓" : "담기 +"}
-          </button>
+          <QuantityInput
+            initialQuantity={quantity}
+            onChange={handleQuantityChange}
+            disabled={outOfStock || !user}
+            max={999}
+          />
         </div>
       </div>
 
@@ -94,6 +131,11 @@ export default function ProductRow({ product }: Props) {
             {product.isReturnRestricted && (
               <span className="ml-1 text-red-500 text-xs font-normal whitespace-nowrap">
                 *단순변심 반품불가상품*
+              </span>
+            )}
+            {outOfStock && (
+              <span className="ml-1 text-red-500 text-xs font-normal whitespace-nowrap">
+                *품절*
               </span>
             )}
           </p>
@@ -131,18 +173,23 @@ export default function ProductRow({ product }: Props) {
           )}
         </div>
 
-        {/* 장바구니 */}
-        <div className="flex-shrink-0 w-[120px] flex items-center justify-center px-2">
-          <button
-            onClick={handleAddToCart}
-            className={`text-xs font-semibold px-3 py-2 rounded border transition-colors whitespace-nowrap
-              ${added
-                ? "bg-green-600 text-white border-green-600"
-                : "bg-white text-blue-700 border-blue-700 hover:bg-blue-700 hover:text-white"
-              }`}
-          >
-            {added ? "담겼습니다 ✓" : "장바구니 담기 +"}
-          </button>
+        {/* 수량/장바구니 */}
+        <div className="flex-shrink-0 w-[180px] flex items-center justify-center px-2">
+          {user ? (
+            <QuantityInput
+              initialQuantity={quantity}
+              onChange={handleQuantityChange}
+              disabled={outOfStock}
+              max={999}
+            />
+          ) : (
+            <button
+              onClick={() => router.push("/login")}
+              className="text-xs text-blue-600 hover:underline"
+            >
+              로그인 후 수량 설정
+            </button>
+          )}
         </div>
       </div>
     </div>

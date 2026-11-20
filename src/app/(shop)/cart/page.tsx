@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
+import CountdownBanner from "@/components/CountdownBanner";
 
 export default function CartPage() {
   const { user, isLoading } = useAuth();
@@ -35,6 +36,7 @@ export default function CartPage() {
 
   return (
     <div className="space-y-3">
+      <CountdownBanner variant="cart" />
       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
         {/* Header */}
         <div className="flex items-center bg-gray-50 border-b border-gray-200 text-xs text-gray-500 font-medium">
