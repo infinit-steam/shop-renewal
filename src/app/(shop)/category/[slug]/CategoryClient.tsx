@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import SortTabs from "@/components/SortTabs";
+import type { SortKey } from "@/lib/productSort";
 import ProductRow from "@/components/ProductRow";
 import ProductGrid from "@/components/ProductGrid";
 import { type FlatProduct } from "@/data/mockData";
@@ -9,40 +12,46 @@ import { useCart } from "@/context/CartContext";
 
 type Product = FlatProduct & { outOfStock?: boolean };
 
-type Props = { slug: string; categoryName: string };
+type Props = { slug: string; categoryName: string; sort: SortKey; page: number };
 
-export default function CategoryClient({ slug, categoryName }: Props) {
+export default function CategoryClient({ slug, categoryName, sort, page }: Props) {
+  const router = useRouter();
   const { user } = useAuth();
   const { addItems } = useCart();
   const [products, setProducts]   = useState<Product[]>([]);
   const [total, setTotal]         = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  const [page, setPage]           = useState(1);
   const [loading, setLoading]     = useState(true);
   const [viewMode, setViewMode]   = useState<"row" | "grid">("row");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [quantities, setQuantities] = useState<Record<string, number>>({});
 
-  const fetchProducts = useCallback(async (p: number) => {
+  useEffect(() => {
+    const ctrl = new AbortController();
     setLoading(true);
     const decoded = decodeURIComponent(slug);
-    const res = await fetch(`/api/products?slug=${encodeURIComponent(decoded)}&page=${p}`);
-    const data = await res.json();
-    setProducts(data.products ?? []);
-    setTotal(data.total ?? 0);
-    setTotalPages(data.totalPages ?? 1);
-    setLoading(false);
-  }, [slug]);
-
-  useEffect(() => { fetchProducts(1); setPage(1); }, [fetchProducts]);
+    fetch(`/api/products?slug=${encodeURIComponent(decoded)}&page=${page}&sort=${sort}`, { signal: ctrl.signal })
+      .then((r) => r.json())
+      .then((data) => {
+        setProducts(data.products ?? []);
+        setTotal(data.total ?? 0);
+        setTotalPages(data.totalPages ?? 1);
+        setLoading(false);
+      })
+      .catch((e) => { if (e?.name !== "AbortError") setLoading(false); });
+    return () => ctrl.abort();
+  }, [slug, sort, page]);
 
   // 페이지 변경 시 선택/수량 상태 초기화
   useEffect(() => {
     setSelectedIds(new Set());
     setQuantities({});
-  }, [page]);
+  }, [page, sort]);
 
-  const handlePage = (p: number) => { setPage(p); fetchProducts(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const handlePage = (p: number) => {
+    router.push(`/category/${encodeURIComponent(slug)}?sort=${sort}&page=${p}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleQuantityChange = useCallback((productId: string, quantity: number) => {
     setQuantities(prev => ({ ...prev, [productId]: quantity }));
@@ -106,13 +115,14 @@ export default function CategoryClient({ slug, categoryName }: Props) {
   return (
     <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between">
+      <div className="bg-white border border-gray-200 rounded-lg px-4 py-3 flex flex-wrap items-center justify-between gap-2">
         <div>
           <h1 className="text-base font-bold text-gray-900">{categoryName}</h1>
           <p className="text-xs text-gray-400 mt-0.5">
             전체 <strong className="text-blue-700">{total.toLocaleString()}</strong>개 상품
           </p>
         </div>
+        <SortTabs basePath={`/category/${encodeURIComponent(slug)}`} current={sort} />
         <div className="flex gap-1">
           <button
             onClick={() => setViewMode("row")}

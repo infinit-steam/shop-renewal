@@ -1,21 +1,33 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import Link from "next/link";
 import ProductRow from "@/components/ProductRow";
+import SortTabs from "@/components/SortTabs";
+import type { SortKey } from "@/lib/productSort";
 import { type FlatProduct } from "@/data/mockData";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 
 type Product = FlatProduct & { outOfStock?: boolean; categorySlug: string; priceMember: number };
 
-type Props = { query: string; initialProducts: Product[] };
+type Props = {
+  query: string;
+  initialProducts: Product[];
+  total: number;
+  sort: SortKey;
+  page: number;
+  totalPages: number;
+};
 
-export default function SearchClient({ query, initialProducts }: Props) {
+export default function SearchClient({ query, initialProducts, total, sort, page, totalPages }: Props) {
   const { user } = useAuth();
   const { addItems } = useCart();
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const products = initialProducts;
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [quantities, setQuantities] = useState<Record<string, number>>({});
+
+  const pageHref = (p: number) => `/search?${new URLSearchParams({ q: query, sort, page: String(p) }).toString()}`;
 
   const handleQuantityChange = useCallback((productId: string, quantity: number) => {
     setQuantities(prev => ({ ...prev, [productId]: quantity }));
@@ -67,15 +79,16 @@ export default function SearchClient({ query, initialProducts }: Props) {
   return (
     <div className="space-y-3">
       {/* Header */}
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-5">
         <div>
           <h1 className="text-lg font-bold text-slate-800">
             &ldquo;{query}&rdquo; 검색 결과
           </h1>
           <p className="text-sm text-slate-500 mt-0.5">
-            {products.length}개의 상품
+            전체 {total.toLocaleString()}개의 상품
           </p>
         </div>
+        <SortTabs basePath="/search" current={sort} keep={{ q: query }} />
       </div>
 
       {products.length === 0 ? (
@@ -108,6 +121,27 @@ export default function SearchClient({ query, initialProducts }: Props) {
               />
             ))}
           </div>
+
+          {totalPages > 1 && (
+            <div className="flex justify-center gap-1 flex-wrap pt-2">
+              {page > 1 && (
+                <Link href={pageHref(page - 1)} className="px-3 py-1.5 border border-gray-300 rounded text-xs hover:bg-gray-50">◀ 이전</Link>
+              )}
+              {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => {
+                const p = Math.max(1, page - 4) + i;
+                if (p > totalPages) return null;
+                return (
+                  <Link key={p} href={pageHref(p)}
+                    className={`w-8 h-8 flex items-center justify-center text-xs rounded border ${page === p ? "bg-blue-700 text-white border-blue-700" : "border-gray-300 hover:bg-gray-50"}`}>
+                    {p}
+                  </Link>
+                );
+              })}
+              {page < totalPages && (
+                <Link href={pageHref(page + 1)} className="px-3 py-1.5 border border-gray-300 rounded text-xs hover:bg-gray-50">다음 ▶</Link>
+              )}
+            </div>
+          )}
 
           {/* Floating Bulk Action Bar */}
           {(selectedSummary.count > 0 || selectedSummary.totalQty > 0) && (

@@ -57,6 +57,13 @@ model Product {
   outOfStock         Boolean  @default(false)
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
+
+  @@index([categorySlug, visible, createdAt])
+  @@index([categorySlug, visible, priceMember])
+  @@index([categorySlug, visible, soldCount])
+  @@index([visible, createdAt])
+  @@index([visible, soldCount])
+  @@index([visible, priceMember])
 }
 
 model CartItem {

@@ -1,12 +1,18 @@
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import SearchClient from "./SearchClient";
+import { buildOrderBy, parsePage, parseSort, sortWhere } from "@/lib/productSort";
+
+const PAGE_SIZE = 60;
 
 export const instant = false;
 
-type Props = { searchParams: Promise<{ q?: string }> };
+type Props = { searchParams: Promise<{ q?: string; sort?: string; page?: string }> };
 
 export default async function SearchPage({ searchParams }: Props) {
-  const { q = "" } = await searchParams;
+  const { q = "", sort: sortParam, page: pageParam } = await searchParams;
+  const sort = parseSort(sortParam);
+  const page = parsePage(pageParam);
   const query = q.trim();
 
   if (!query) {
@@ -21,17 +27,23 @@ export default async function SearchPage({ searchParams }: Props) {
     );
   }
 
-  const products = await prisma.product.findMany({
-    where: {
-      visible: true,
-      OR: [
+  const where: Prisma.ProductWhereInput = {
+    visible: true,
+    ...sortWhere(sort),
+    OR: [
         { productName: { contains: query, mode: "insensitive" } },
         { modelName: { contains: query, mode: "insensitive" } },
         { productIdx: { contains: query, mode: "insensitive" } },
-      ],
-    },
-    orderBy: { soldCount: "desc" },
-    take: 60,
+    ],
+  };
+
+  const [total, products] = await Promise.all([
+    prisma.product.count({ where }),
+    prisma.product.findMany({
+    where,
+    orderBy: buildOrderBy(sort),
+    skip: (page - 1) * PAGE_SIZE,
+    take: PAGE_SIZE,
     select: {
       id: true,
       categorySlug: true,
@@ -46,7 +58,18 @@ export default async function SearchPage({ searchParams }: Props) {
       isReturnRestricted: true,
       outOfStock: true,
     },
-  });
+  }),
+  ]);
 
-  return <SearchClient query={query} initialProducts={products} />;
+  return (
+    <SearchClient
+      key={`${query}|${sort}|${page}`}
+      query={query}
+      initialProducts={products}
+      total={total}
+      sort={sort}
+      page={page}
+      totalPages={Math.max(1, Math.ceil(total / PAGE_SIZE))}
+    />
+  );
 }

@@ -2,10 +2,14 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { getCategoryBySlug } from "@/data/mockData";
 import CategoryClient from "./CategoryClient";
+import { parsePage, parseSort } from "@/lib/productSort";
 
 export const instant = false;
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ sort?: string; page?: string }>;
+};
 
 async function resolveCategoryName(slug: string): Promise<string | null> {
   const decoded = decodeURIComponent(slug);
@@ -29,12 +33,20 @@ async function resolveCategoryName(slug: string): Promise<string | null> {
   return null;
 }
 
-export default async function CategoryPage({ params }: Props) {
+export default async function CategoryPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const sp = await searchParams;
   const decoded = decodeURIComponent(slug);
 
   const name = await resolveCategoryName(decoded);
   if (!name) notFound();
 
-  return <CategoryClient slug={decoded} categoryName={name} />;
+  return (
+    <CategoryClient
+      slug={decoded}
+      categoryName={name}
+      sort={parseSort(sp.sort)}
+      page={parsePage(sp.page)}
+    />
+  );
 }

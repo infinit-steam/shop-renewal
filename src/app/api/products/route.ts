@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { buildOrderBy, parseSort, sortWhere } from "@/lib/productSort";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const slug   = searchParams.get("slug") ?? "";
-  const page   = Math.max(1, parseInt(searchParams.get("page") ?? "1"));
+  const page   = Math.max(1, parseInt(searchParams.get("page") ?? "1") || 1);
+  const sort   = parseSort(searchParams.get("sort"));
   const limit  = 50;
 
   if (!slug) return NextResponse.json({ products: [], total: 0, totalPages: 0 });
@@ -13,7 +15,7 @@ export async function GET(req: NextRequest) {
   // leaf slug (e.g. "c3-s1") → direct match
   const leafSlugs = await getLeafSlugs(slug);
 
-  const where = { categorySlug: { in: leafSlugs }, visible: true };
+  const where = { categorySlug: { in: leafSlugs }, visible: true, ...sortWhere(sort) };
 
   const [total, products] = await Promise.all([
     prisma.product.count({ where }),
@@ -21,7 +23,7 @@ export async function GET(req: NextRequest) {
       where,
       skip:    (page - 1) * limit,
       take:    limit,
-      orderBy: { soldCount: "desc" },
+      orderBy: buildOrderBy(sort),
       select: {
         id: true, categorySlug: true,
         productIdx: true, modelName: true, productName: true,
