@@ -27,6 +27,7 @@ export default async function SearchPage({ searchParams }: Props) {
       OR: [
         { productName: { contains: query, mode: "insensitive" } },
         { modelName: { contains: query, mode: "insensitive" } },
+        { productIdx: { contains: query, mode: "insensitive" } },
       ],
     },
     orderBy: { soldCount: "desc" },

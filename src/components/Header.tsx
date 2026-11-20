@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
+import SearchBox from "@/components/SearchBox";
 import { categories } from "@/data/mockData";
 
 export default function Header() {
@@ -17,13 +18,6 @@ export default function Header() {
     await logout();
     router.push("/");
     router.refresh();
-  };
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
   };
 
   const openDrawer = () =>
@@ -43,30 +37,7 @@ export default function Header() {
           </Link>
 
           {/* Search — desktop only (inline in row 1) */}
-          <form onSubmit={handleSearch} className="hidden md:flex flex-1 relative items-center">
-            <svg
-              className="absolute left-3.5 w-4 h-4 text-slate-400 pointer-events-none"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
-            </svg>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="상품명, 모델명을 입력하세요"
-              className="w-full border border-slate-300 rounded-full pl-10 pr-24 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
-            />
-            <button
-              type="submit"
-              className="absolute right-1 bg-[#0F172A] hover:bg-slate-700 text-white px-5 py-1.5 rounded-full text-sm font-medium transition-colors"
-            >
-              검색
-            </button>
-          </form>
+          <SearchBox className="hidden md:flex flex-1" />
 
           {/* Spacer on mobile */}
           <div className="flex-1 md:hidden" />
@@ -111,30 +82,7 @@ export default function Header() {
         </div>
 
         {/* Row 2 on mobile: Search bar */}
-        <form onSubmit={handleSearch} className="md:hidden mt-2 relative flex items-center">
-          <svg
-            className="absolute left-3.5 w-4 h-4 text-slate-400 pointer-events-none"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
-          </svg>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="상품명, 모델명을 입력하세요"
-            className="w-full border border-slate-300 rounded-full pl-10 pr-20 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
-          />
-          <button
-            type="submit"
-            className="absolute right-1 bg-[#0F172A] hover:bg-slate-700 text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
-          >
-            검색
-          </button>
-        </form>
+        <SearchBox mobile className="md:hidden mt-2" />
       </div>
 
       {/* ── Nav bar ───────────────────────────────────────────────── */}
