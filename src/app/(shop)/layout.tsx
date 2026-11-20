@@ -1,12 +1,15 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import MobileDrawer from "@/components/MobileDrawer";
+import { LeftWing, RightWing } from "@/components/WingBanners";
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <MobileDrawer />
+      <LeftWing />
+      <RightWing />
 
       <div className="flex-1 max-w-[1200px] w-full mx-auto px-4 py-4 flex flex-col md:flex-row gap-4">
         {/* Sidebar: desktop only */}

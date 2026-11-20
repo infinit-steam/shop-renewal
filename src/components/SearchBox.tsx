@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { addRecent } from "@/lib/recentProducts";
 import { useAuth } from "@/context/AuthContext";
 
 type Suggestion = {
@@ -96,6 +97,7 @@ export default function SearchBox({ className = "", mobile = false }: { classNam
       setQuery(item.label);
       go(item.label);
     } else {
+      addRecent({ id: item.product.id, productName: item.product.productName, thumbnail: item.product.thumbnail });
       setQuery(item.product.productName);
       go(item.product.productName);
     }

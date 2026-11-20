@@ -4,6 +4,7 @@ import ProductImage from "@/components/ProductImage";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { type FlatProduct } from "@/data/mockData";
+import { addRecent } from "@/lib/recentProducts";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 
@@ -17,6 +18,7 @@ export default function ProductGrid({ product }: Props) {
 
   const handleAddToCart = async () => {
     if (!user) { router.push("/login"); return; }
+    addRecent({ id: product.id, productName: product.productName, thumbnail: product.thumbnail });
     await addItem({
       productId: product.id,
       productName: product.productName,

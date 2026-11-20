@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { type FlatProduct } from "@/data/mockData";
+import { addRecent } from "@/lib/recentProducts";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import ProductImage from "@/components/ProductImage";
@@ -36,6 +37,7 @@ export default function ProductRow({
 
   const handleAddToCart = async () => {
     if (!user) { router.push("/login"); return; }
+    addRecent({ id: product.id, productName: product.productName, thumbnail: product.thumbnail });
     await addItem({
       productId: product.id,
       productName: product.productName,
