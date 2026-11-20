@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
+import ChangePasswordForm from "@/components/ChangePasswordForm";
 
 type OrderItem = {
   id: string;
@@ -120,6 +121,7 @@ function MyPageContent() {
           <div><span className="text-gray-500">이메일</span> {user.email}</div>
           <div><span className="text-gray-500">연락처</span> {user.phone}</div>
         </div>
+        <ChangePasswordForm />
       </div>
 
       {/* 주문 내역 */}

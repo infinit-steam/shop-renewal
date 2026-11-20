@@ -40,6 +40,16 @@ export default function AdminUsers() {
     fetchUsers(page);
   };
 
+  const resetPassword = async (user: User) => {
+    if (!confirm(`${user.companyName} (${user.email})
+임시 비밀번호를 발급할까요? 기존 비밀번호는 즉시 사용할 수 없게 됩니다.`)) return;
+    const res = await fetch(`/api/admin/users/${user.id}/reset-password`, { method: "POST" });
+    const data = await res.json();
+    if (!res.ok) { alert(data.error ?? "발급에 실패했습니다."); return; }
+    window.prompt(`임시 비밀번호가 발급되었습니다. 회원에게 전달해 주세요. (다시 조회할 수 없음)
+${data.email}`, data.tempPassword);
+  };
+
   return (
     <div className="space-y-4">
       {/* Toolbar */}
@@ -120,6 +130,12 @@ export default function AdminUsers() {
                         }`}
                       >
                         {u.isApproved ? "승인 취소" : "승인하기"}
+                      </button>
+                      <button
+                        onClick={() => resetPassword(u)}
+                        className="ml-1.5 text-xs px-3 py-1.5 rounded font-medium border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+                      >
+                        임시비번
                       </button>
                     </td>
                   </tr>

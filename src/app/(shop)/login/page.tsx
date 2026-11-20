@@ -80,6 +80,12 @@ export default function LoginPage() {
           </button>
         </form>
 
+        <p className="mt-4 text-center text-xs text-gray-500">
+          비밀번호를 잊으셨나요? 고객센터{" "}
+          <a href="tel:01076071467" className="text-blue-700 font-semibold">010-7607-1467</a>로 연락하시면
+          <br />본인 확인 후 임시 비밀번호를 발급해 드립니다.
+        </p>
+
         <div className="mt-5 pt-4 border-t border-gray-100 text-center text-sm text-gray-500">
           아직 회원이 아니신가요?{" "}
           <Link href="/register" className="text-blue-700 font-semibold hover:underline">
