@@ -23,7 +23,8 @@ export async function POST(req: NextRequest) {
 
     // 관리자 승인 후 로그인 가능 — 가입 시 자동 로그인 없음
     return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json({ error: "서버 오류가 발생했습니다." }, { status: 500 });
+  } catch (error) {
+    console.error("[AUTH_REGISTER_ERROR]", error);
+    return NextResponse.json({ error: error instanceof Error ? error.message : "서버 오류가 발생했습니다." }, { status: 500 });
   }
 }

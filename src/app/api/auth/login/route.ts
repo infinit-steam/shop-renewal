@@ -47,7 +47,8 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
     return res;
-  } catch {
-    return NextResponse.json({ error: "서버 오류가 발생했습니다." }, { status: 500 });
+  } catch (error) {
+    console.error("[AUTH_LOGIN_ERROR]", error);
+    return NextResponse.json({ error: error instanceof Error ? error.message : "서버 오류가 발생했습니다." }, { status: 500 });
   }
 }
