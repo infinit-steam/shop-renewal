@@ -99,6 +99,10 @@ export default function Header() {
             전체 카테고리
           </button>
 
+          <Link href="/products" className="text-white text-sm font-bold px-4 py-2.5 hover:bg-slate-800 transition-colors whitespace-nowrap flex-shrink-0">
+            전체상품
+          </Link>
+
           {/* Category links */}
           {categories.map((cat) => (
             <Link

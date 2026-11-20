@@ -101,7 +101,7 @@ export default async function Home() {
             </h1>
             <p className="text-xs md:text-sm text-slate-400 mb-3 md:mb-5">도매 회원 전용가 · 소량 주문 가능 · 빠른 배송</p>
             <Link
-              href={`/category/${categories[0]?.slug ?? ""}`}
+              href="/products"
               className="inline-block bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-lg shadow-indigo-900/40"
             >
               전체 상품 보기 →
@@ -209,7 +209,7 @@ export default async function Home() {
               <h2 className="text-sm font-bold text-slate-800">신규 입고 상품</h2>
             </div>
             <Link
-              href={`/category/${categories[0]?.slug ?? ""}`}
+              href="/products"
               className="text-xs text-indigo-600 hover:underline"
             >
               전체보기 →
